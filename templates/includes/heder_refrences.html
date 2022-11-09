@@ -1,0 +1,54 @@
+{% load static %}
+
+<header class="">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url "home:home" %}"><h2>Stand Blog<em>.</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {% if request.resolver_match.url_name == "home" %} active {% endif %}">
+                        <a class="nav-link" href="{% url "home:home" %}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                        {% csrf_token %}
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.url_name == "blog" %} active {% endif %}">
+                        <a class="nav-link" href="{% url "blog:blog" %}">Blog Entries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Post Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        {% if user.profile.image %}
+                            <span><img src="{{ user.profile.image.url }}" width="30px" height="30px"
+                                       style="border-radius: 100%;" alt=""></span>
+                        {% else %}
+                            <span><img src="{% static "images/profile.png" %}" width="30px" height="30px"
+                                       style="border-radius: 100%;" alt=""></span>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{ user.username }}</a>
+                        <li class="nav-item">
+                            <Button class="btn btn-danger"><a style="color: rgb(250, 250, 250);"
+                                                              href="{% url "account:logout" %}">Logout</a></Button>
+                        </li>
+                    {% else %}
+                        <Button class="btn btn-success"><a style="color: white;" href="{% url "account:login" %}">Login
+                            or <a style="color: white;" href="{% url "account:register" %}">Sing up</a></a></Button>
+                    {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
