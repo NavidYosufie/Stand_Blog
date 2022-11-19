@@ -27,10 +27,8 @@ def user_register(request):
 
 
 
-
 def user_login(request):
     context = {"errors": []}
-
     if request.user.is_authenticated:
         return redirect("home:home")
 
@@ -38,15 +36,12 @@ def user_login(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
 
-   
-
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             return redirect("home:home")
     
     return render(request, "account/login.html")
-
 
 
 def user_logout(request):

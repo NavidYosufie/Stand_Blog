@@ -10,7 +10,7 @@ class Cateqory(models.Model):
     slug = models.SlugField(blank=True)
     
 
-    def get_absollut_url(self):
+    def get_absolut_url(self):
         return reverse("blog:category_detail", kwargs={"slug": self.slug})
 
     def save(self):
@@ -74,3 +74,14 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.body[:50]
+
+
+
+class Massege(models.Model):
+    title = models.CharField(max_length=100)
+    message = models.TextField()
+    email = models.EmailField()
+    created_add = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.title

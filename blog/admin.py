@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Article, Cateqory, Comment
+from . import models
 
-admin.site.register(Article)
-admin.site.register(Cateqory)
-admin.site.register(Comment)
+admin.site.register(models.Article)
+admin.site.register(models.Cateqory)
+admin.site.register(models.Comment)
+admin.site.register(models.Massege)
