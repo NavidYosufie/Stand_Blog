@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from blog.models import Article, Cateqory, Comment, Massege
+from blog.models import Article, Cateqory, Comment, Messege
 from django.core.paginator import Paginator
 from .forms import ContactUsForm, MessageForm
 
@@ -40,10 +40,10 @@ def contactus(request):
     if request.method == "POST":
         form = MessageForm(data=request.POST)
         if form.is_valid():
-            title = form.cleaned_data["title"]
-            email = form.cleaned_data["email"]
-            message = form.cleaned_data["message"]
-            Massege.objects.create(title=title, email=email, message=message)
+            instance = form.save(commit=False)
+            instance.title = instance.title.upper()
+            instance.save()
+
     else:
         form = MessageForm()
     return render(request, "blog/contact_us.html", {"form": form})

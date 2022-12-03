@@ -1,7 +1,7 @@
-from mailbox import Message
-
 from django import forms
 from django.core.validators import ValidationError
+from . import models
+from django.contrib.auth.models import User
 
 class ContactUsForm(forms.Form):
     FAVORITE_COLORS_CHOICES = [
@@ -21,8 +21,32 @@ class ContactUsForm(forms.Form):
             raise ValidationError("name and text are same", code="name_text_same")
 
 
+
+
 class MessageForm(forms.ModelForm):
     class Meta:
-        model = Message
-        fields = "--__all__"
+        model = models.Messege
+        fields = "__all__"
+        widgets = {
+            "title": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Enter Your Title"
+            }),
+            "message": forms.Textarea(attrs={
+                "class": "form-control",
+                "placeholder": "Enter Your Message",
+                "style": "max-left: 700px;"
+            }),
+            "email": forms.EmailInput(attrs={
+                "class": "form-control",
+                "placeholder": "Enter Your Email"
+            }),
+            "age": forms.NumberInput(attrs={
+                "class": "form-control",
+                "placeholder": "Enter Your Age"
+            }),
+            "date": forms.DateTimeInput(attrs={
+                "class": "form-control",
+            })
+        }
 

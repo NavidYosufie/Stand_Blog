@@ -4,4 +4,4 @@ from . import models
 admin.site.register(models.Article)
 admin.site.register(models.Cateqory)
 admin.site.register(models.Comment)
-admin.site.register(models.Massege)
+admin.site.register(models.Messege)
