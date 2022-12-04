@@ -39,15 +39,20 @@
 					<span  class="login100-form-title">
 						 Sing up
 					</span>
-
-                    {% if errors %}
-                        {% for error in errors %}
-                            <p class="text text-danger bg-white mb-2">{{ error }}</p>
-                        {% endfor %}
-                    {% endif %}
-
+                        {% if form.password_2.errors %}
+                            <div class="alert alert-danger" >{{ form.password_2.errors }}</div>
+                        {% endif %}
+                        {% if form.username.errors %}
+                            <div class="alert alert-danger" >{{ form.username.errors }}</div>
+                        {% endif %}
+                        {% if form.email.errors %}
+                            <div class="alert alert-danger" >{{ form.email.errors }}</div>
+                        {% endif %}
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100 mt-" type="text" name="username" placeholder="username">
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" >{{ form.non_field_errors }}</div>
+                        {% endif %}
+                        {{ form.username }}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -56,7 +61,7 @@
 
 
                     <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="email" name="email" placeholder="Email">
+						{{ form.email }}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -64,7 +69,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="password1" placeholder="Password">
+						{{ form.password_1 }}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -72,7 +77,7 @@
 					</div>
 
                     <div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="password2" placeholder="set Password">
+						{{ form.password_2 }}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
