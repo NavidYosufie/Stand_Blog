@@ -19,11 +19,17 @@ def article_list(request):
     objects_list = paginator.get_page(page_number)
     return render(request, "blog/article_list.html", {"article": objects_list})
 
+def category(request):
+    category_detail = Cateqory.objects.all()
+    return render(request, "blog/article_list.html", {"category": category_detail})
 
 def cateqory_detail(request, slug):
+    page_number = request.GET.get("page")
     cateqory = get_object_or_404(Cateqory, slug=slug)
     articles = cateqory.articles.all()
-    return render(request, "blog/article_list.html", {"article": articles})
+    paginator = Paginator(articles, 4)
+    object_list = paginator.get_page(page_number)
+    return render(request, "blog/article_list.html", {"article": object_list})
 
 
 def search_article(request):

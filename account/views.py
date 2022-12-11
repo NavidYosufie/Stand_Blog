@@ -35,7 +35,7 @@ def user_edit(request):
     user = request.user
     form = UserEditForm(instance=user)
     if request.method == "POST":
-        form = UserEditForm(instance=user, data=request.POST)
+        form = UserEditForm(data=request.POST, instance=user)
         if form.is_valid():
             form.save()
     return render(request, "account/Edit.html", {"form": form})
@@ -45,20 +45,3 @@ def user_logout(request):
     logout(request)
     return redirect("home:home")
 
-
-# def user_register(request):
-#     context = {'errors': []}
-#     if request.user.is_authenticated:
-#         return redirect("home:home")
-#     if request.method == "POST":
-#         username = request.POST.get("username")
-#         email = request.POST.get("email")
-#         password_1 = request.POST.get("password_1")
-#         password_2 = request.POST.get("password_2")
-#         if password_1 != password_2:
-#             context["errors"].append("Password not set Plase your password set")
-#             return render(request, "account/register.html", context)
-#         user = User.objects.create(username=username, email=email, password=password_1)
-#         login(request, user)
-#         return redirect("home:home")
-#     return render(request, "account/register.html")

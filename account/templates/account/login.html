@@ -44,6 +44,12 @@
                         {% if form.non_field_errors %}
                             <div class="alert alert-danger" >{{ form.non_field_errors }}</div>
                         {% endif %}
+                        {% if form.username.errors %}
+                            <div class="alert alert-danger" >{{ form.username.errors }}</div>
+                        {% endif %}
+                        {% if form.password.errors %}
+                            <div class="alert alert-danger" >{{ form.password.errors }}</div>
+                        {% endif %}
 						{{ form.username }}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">

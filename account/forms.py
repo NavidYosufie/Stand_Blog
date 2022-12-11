@@ -41,10 +41,9 @@ class LoginForm (forms.Form):
         user = authenticate(username=self.cleaned_data.get("username"), password=self.cleaned_data.get("password"))
         if user is not None:
             return self.cleaned_data.get("password")
-        raise ValidationError("username or password are wrong", code="invalid_info")
-
+        raise ValidationError("this username or password are wrong", code="invalid_info")
 
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ("first_name", 'last_name', "email")
+        fields = ("username", "first_name", 'last_name', "email")

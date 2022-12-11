@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load widget_tweaks %}
 {% block title %}contact us{% endblock %}
 {% block content %}
 
@@ -14,13 +13,22 @@
                             <div class="col-lg-8">
                                 <div class="sidebar-item contact-form">
                                     <div class="sidebar-heading">
-                                        <h2>Edit Profily</h2>
+                                        <h2>Edit Your Profile</h2>
                                     </div>
                                     <div class="content">
                                         <form id="contact" action="" method="post">
                                             {% csrf_token %}
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-12">
+                                                    {% if form.non_field_errors %}
+                                                        <div class="alert alert-danger" >{{ form.non_field_errors }}</div>
+                                                    {% endif %}
+                                                    {% if form.username.errors %}
+                                                        <div>{{ form.username.errors }}</div>
+                                                    {% endif %}
+                                                    {% if form.email.errors %}
+                                                        <div class="alert alert-danger" >{{ form.email.errors }}</div>
+                                                    {% endif %}
                                                     {{ form }}
                                                 </div>
                                                 <div class="col-lg-12">

@@ -3,7 +3,7 @@ from blog.models import Article
 
 
 def home(request):
-    articles = Article.custom_manager.all()
+    articles = Article.custom_manager.all().order_by("-created")[:3]
     return render(request, "home/index.html", {"article": articles})
 
 

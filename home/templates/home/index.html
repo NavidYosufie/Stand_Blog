@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load social_share %}
 {% load static %}
-
+{% load filters %}
 {% block title %}
   home
 {% endblock %}
@@ -12,6 +12,7 @@
     <div class="main-banner header-text">
       <div class="container-fluid">
         <div class="owl-banner owl-carousel">
+        <h5>{% time "%Y-%m-%d" %}</h5>
           {% for article in article %}
           <div class="item">
             <img width="100px" height="400px" src="{{ article.image.url }}" alt="{{ article.title }}">
@@ -49,13 +50,13 @@
                     </div>
                     <div class="down-content">
                       <span>Lifestyle</span>
-                      <a href="{{ article.get_absolute_url }}"><h4>{{ article.titcle }}</h4></a>
+                      <a href="{{ article.get_absolute_url }}"><h4>{{ article.title }}</h4></a>
                       <ul class="post-info">
                         <li><a href="#">{{ article.author }}</a></li>
                         <li><a href="#">{{ article.created }}</a></li>
                         <li><a href="#">12 Comments</a></li>
                       </ul>
-                        <p>{{ article.body }}</p>
+                        <p>{{ article.body|cutter:300 }}</p>
                       <div class="post-options">
                         <div class="row">
                           <div class="col-6">
