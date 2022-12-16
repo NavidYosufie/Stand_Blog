@@ -3,8 +3,9 @@ from blog.models import Article
 
 
 def home(request):
-    articles = Article.custom_manager.all().order_by("-created")[:3]
-    return render(request, "home/index.html", {"article": articles})
+    articles = Article.objects.all().order_by("-created")[:3]
+    articles_nav = Article.objects.all()[:4]
+    return render(request, "home/index.html", {"article": articles, "articles_nav": articles_nav})
 
 
 

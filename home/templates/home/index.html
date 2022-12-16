@@ -12,8 +12,7 @@
     <div class="main-banner header-text">
       <div class="container-fluid">
         <div class="owl-banner owl-carousel">
-        <h5>{% time "%Y-%m-%d" %}</h5>
-          {% for article in article %}
+          {% for article in articles_nav %}
           <div class="item">
             <img width="100px" height="400px" src="{{ article.image.url }}" alt="{{ article.title }}">
             <div class="item-content">
