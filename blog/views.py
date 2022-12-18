@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from blog.models import Article, Cateqory, Comment, Messege
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
+from blog.models import Article, Cateqory, Comment
 from django.core.paginator import Paginator
 from .forms import ContactUsForm, MessageForm
+from django.views.generic.base import View, TemplateView
 
 def post_detail(request, slug):
     article = get_object_or_404(Article, slug=slug)
@@ -13,7 +14,7 @@ def post_detail(request, slug):
 
 
 def article_list(request):
-    articles = Article.objects.filter(status=True)
+    articles = Article.objects.filter(status=True).order_by("created-")
     page_number = request.GET.get("page")
     paginator = Paginator(articles, 4)
     objects_list = paginator.get_page(page_number)
@@ -36,7 +37,7 @@ def search_article(request):
     search = request.GET.get("search")
     article = Article.objects.filter(title__icontains=search)
     get_number_page = request.GET.get("page")
-    paginator = Paginator(article, 1)
+    paginator = Paginator(article, 4)
     object_list = paginator.get_page(get_number_page)
     return render(request, "blog/article_list.html", {"article": object_list})
 
@@ -53,3 +54,14 @@ def contactus(request):
     else:
         form = MessageForm()
     return render(request, "blog/contact_us.html", {"form": form})
+
+
+class TestBaseView(View):
+    def get(self, request):
+        return HttpResponse("im navid")
+
+
+
+
+
+
