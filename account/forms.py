@@ -27,7 +27,7 @@ class RegisterForm(forms.Form):
         password_1 = self.cleaned_data.get('password_1')
         password_2 = self.cleaned_data.get('password_2')
         if password_1 != password_2:
-            raise ValidationError("this password not the same", code="password_same")
+            raise ValidationError("This password not the same", code="password_same")
         return password_2
 
 
