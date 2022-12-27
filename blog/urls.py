@@ -9,5 +9,5 @@ urlpatterns = [
     path("cateqory_detail/<slug:slug>", views.cateqory_detail, name="category_detail"),
     path("search/", views.search_article, name="search_articles"),
     path("contactus/", views.contactus, name="contact_us"),
-    path("test", views.TestBaseView.as_view(), name="test"),
+    path("art/", views.ArticleList.as_view(), name="contact_us")
 ]
