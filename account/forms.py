@@ -8,7 +8,7 @@ from django.forms import ValidationError
 class RegisterForm(forms.Form):
     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={"class": "input100 mt-", "placeholder": "Enter your username"}))
     email = forms.CharField(widget=forms.EmailInput(attrs={"class": "input100", "placeholder": "Enter Your Email"}))
-    password_1 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "input100", "placeholder": "Enter Your Password"}))
+    password_1 = forms.CharField( min_length=8, max_length=16, widget=forms.PasswordInput(attrs={"class": "input100", "placeholder": "Enter Your Password"}))
     password_2 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "input100", "placeholder": "Enter َAgain Your Password"}))
 
     def clean_username(self):
