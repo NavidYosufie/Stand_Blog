@@ -14,7 +14,7 @@
         <div class="owl-banner owl-carousel">
           {% for article in object_list %}
           <div class="item">
-            <img width="100px" height="400px" src="{{ article.image.url }}" alt="{{ article.title }}">
+           <a href="{{ article.get_absolute_url }}" ><img width="100px" height="400px" src="{{ article.image.url }}" alt="{{ article.title }}"></a>
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
