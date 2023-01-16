@@ -11,10 +11,6 @@ class HomeView(TemplateView):
         context["object_list"] = Article.objects.all()[:4]
         return context
 
-def sidenar(request):
-    context = {"name": "navid"}
-    return render(request, "includes/sidebar.html", context)
-
 
 
 
